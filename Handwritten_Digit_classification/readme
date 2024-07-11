@@ -1,0 +1,1 @@
+It is an Simple Handwritten Digit classification Project.Modified National Institute of Standards and Technology database(MINST) dataset is used to train the model.Simple ANN is used to train the model and also try with Hidden layers,which gives 99% of accuracy.
