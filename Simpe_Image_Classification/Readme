@@ -1,1 +1,0 @@
-It is an Simple Image Classification Project.CIFAR10 Dataset is used to train the model.First I am train it with Simple ANN network and then i try Convolutional Neural Network for Better accuracy.
