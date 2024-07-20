@@ -1,117 +1,62 @@
-# Bengaluru House Price Prediction
+# Bangalore House Price Prediction
 
 ## Project Overview
 
-This project aims to predict house prices in Bengaluru using various regression techniques. The dataset consists of features like location, size, total square feet, number of bathrooms, and more.
+This project aims to predict house prices in Bangalore using various features such as location, size, total square footage, number of bathrooms, and BHK (number of bedrooms, halls, and kitchens). The dataset is preprocessed to handle missing values, outliers, and categorical variables. Multiple regression models are tested to find the best one for price prediction.
 
 ## Dataset
 
-The dataset used in this project is `Bengaluru_House_Data.csv`, which contains the following columns:
+The dataset contains information about various houses in Bangalore, including:
 
-- `area_type`
-- `availability`
-- `location`
-- `size`
-- `society`
-- `total_sqft`
-- `bath`
-- `balcony`
-- `price`
+- **area_type**: Type of area (e.g., Super built-up Area, Plot Area, etc.)
+- **availability**: When the property is available (e.g., Ready To Move, Immediate Possession, etc.)
+- **location**: Location of the property
+- **size**: Number of bedrooms (BHK)
+- **society**: Name of the society
+- **total_sqft**: Total area of the property in square feet
+- **bath**: Number of bathrooms
+- **balcony**: Number of balconies
+- **price**: Price of the property in lakhs
 
-### Data Cleaning and Preprocessing
+## Code Overview
 
-1. **Handling Missing Values**: Dropped columns with too many missing values and rows with null values.
-2. **Feature Engineering**:
-   - Extracted BHK (number of bedrooms) from the `size` column.
-   - Converted total square feet to a numeric format.
-   - Created a new feature `price_per_sqft`.
-3. **Dimensionality Reduction**: Grouped locations with less than 10 occurrences into an 'other' category.
-4. **Outlier Removal**:
-   - Removed outliers based on the `total_sqft` per BHK.
-   - Removed properties with an unusually high number of bathrooms.
-   - Removed properties with `price_per_sqft` outliers.
+### Data Preparation
 
-### Visualization
+1. **Load Dataset**: The dataset is loaded from a CSV file.
+2. **Drop Irrelevant Columns**: Columns such as 'area_type', 'society', 'balcony', and 'availability' are dropped.
+3. **Handle Missing Values**: Rows with missing values are dropped.
+4. **Feature Engineering**:
+    - Extract the number of BHK from the 'size' column.
+    - Convert 'total_sqft' to a numeric value, handling ranges and other formats.
+    - Create a new feature 'price_per_sqft'.
+5. **Location Normalization**: Normalize location names and group locations with less than 10 data points into 'other'.
+6. **Outlier Removal**:
+    - Remove outliers based on 'total_sqft' per BHK.
+    - Remove outliers based on 'price_per_sqft'.
+    - Remove properties with a disproportionate number of bathrooms.
 
-- Scatter plots to visualize the relationship between total square feet and price.
-- Histograms for price per square feet and number of bathrooms.
+### Model Building
 
-## Model Building
+1. **Train-Test Split**: Split the data into training and testing sets.
+2. **Linear Regression Model**: Train a linear regression model.
+3. **Cross-Validation**: Use cross-validation to evaluate the model's performance.
+4. **Grid Search**: Use GridSearchCV to find the best model and hyperparameters among linear regression, lasso, and decision tree regressor.
 
-### Algorithms Used
+### Prediction Function
 
-1. **Linear Regression**: Baseline model.
-2. **Lasso Regression**: For feature selection.
-3. **Decision Tree Regression**: For non-linear relationships.
+- **predict_price**: A function that predicts the price of a house given the location, total square footage, number of bathrooms, and BHK.
 
-### Model Evaluation
+### Model Saving
 
-- Used k-fold cross-validation to evaluate model performance.
-- Compared models using GridSearchCV to find the best parameters.
-
-### Results
-
-- Linear Regression was chosen as the final model based on cross-validation results.
+- The trained model is saved using pickle.
+- The columns used in the model are saved in a JSON file.
 
 ## Usage
 
-### Prerequisites
+1. **Run the Jupyter Notebook**: Execute the notebook to load data, preprocess it, build and train the model, and evaluate its performance.
+2. **Predict House Prices**: Use the `predict_price` function to predict house prices for given input features.
 
-- Python 3.x
-- Pandas
-- Numpy
-- Matplotlib
-- Scikit-learn
-- TensorFlow
-- Keras
-- Google Colab (for running the notebook)
-- Kaggle (for accessing the dataset)
+## Results
 
-### Running the Project
-
-1. **Clone the Repository**:
-    ```bash
-    git clone <repository_url>
-    cd <repository_directory>
-    ```
-2. **Install Dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-3. **Run the Jupyter Notebook**:
-    Open and run the `ML_PRJT_.ipynb` notebook in Jupyter or Google Colab.
-
-### Predicting House Prices
-
-To predict house prices using the trained model:
-1. Load the saved model:
-    ```python
-    import pickle
-    with open('banglore_home_price_prediction_model.pickle', 'rb') as f:
-        model = pickle.load(f)
-    ```
-2. Predict the price:
-    ```python
-    def predict_price(location, sqft, bath, bhk):
-        global X
-        loc_index = np.where(X.columns == location)[0][0]
-
-        x = np.zeros(len(X.columns))
-        x[0] = sqft
-        x[1] = bath
-        x[2] = bhk
-        if loc_index >= 0:
-            x[loc_index] = 1
-
-        return model.predict([x])[0]
-
-    predict_price('1st Phase JP Nagar', 1000, 2, 3)
-    ```
-
-## Model Deployment
-
-The trained model and the feature columns are saved as:
-- `banglore_home_price_prediction_model.pickle`
-- `columns.json`
-
-These files can be used for deploying the model in a web application.
+- The best model is selected based on cross-validation and grid search results.
+- The model's performance metrics are evaluated and visualized.
