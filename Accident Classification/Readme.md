@@ -1,4 +1,4 @@
-# Accident Detection from CCTV Footage using CNN
+# Accident Classification from CCTV Footage using CNN
 
 ## Project Overview
 
