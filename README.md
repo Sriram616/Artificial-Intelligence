@@ -1,4 +1,4 @@
-# AI, ML, and DL Projects Repository
+# AI Projects Repository
 
 ## Repository Overview
 
