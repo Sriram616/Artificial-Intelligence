@@ -2,7 +2,7 @@
 
 ## Repository Overview
 
-Welcome to my AI, ML, and DL projects repository! This repository contains a curated collection of projects focused on various aspects of artificial intelligence, machine learning, and deep learning. The projects included here are designed to enhance practical knowledge and skills through hands-on experience with real-world datasets and problems.
+Welcome to my AI projects repository! This repository contains a curated collection of projects focused on various aspects of artificial intelligence, machine learning, and deep learning. The projects included here are designed to enhance practical knowledge and skills through hands-on experience with real-world datasets and problems.
 
 ## Projects Included
 
@@ -16,7 +16,7 @@ The projects in this repository cover a wide range of topics and techniques, inc
 
 ## Goals and Motivation
 
-The primary goal of this repository is to document my learning journey in AI, ML, and DL by working on diverse and challenging projects. Through these projects, I aim to:
+The primary goal of this repository is to document my learning journey in AI by working on diverse and challenging projects. Through these projects, I aim to:
 - Develop a deeper understanding of various algorithms and techniques.
 - Gain hands-on experience in implementing and tuning models.
 - Explore different applications of AI and ML in practical scenarios.
